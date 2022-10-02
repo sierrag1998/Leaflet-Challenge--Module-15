@@ -6,15 +6,15 @@ function TotalFunction(info) {
         magnitude = feature.properties.mag
         var color = "";
 
-        if (depth > 90) {color = 'green';
-        }
-        else if (depth > 70) {color = 'yellow';
-        }
-        else if (depth > 50) {color = '#FF9900';
+        if (depth > 40) {color = 'red';
         }
         else if (depth > 30) {color = '#FFCC00';
         }
-        else if (depth > 10) {color = 'red';
+        else if (depth > 20) {color = '#FF9900';
+        }
+        else if (depth > 10) {color = 'yellow';
+        }
+        else if (depth > 0) {color = 'green';
         }
         else {color = '#00FF00';
         }
@@ -36,7 +36,7 @@ function TotalFunction(info) {
 
      // POPUP
     function onEachFeature(feature, layer) {
-        layer.bindPopup(`<h3>${feature.properties.place}</h3><hr><p>${new Date(feature.properties.time)}</p>`);
+        layer.bindPopup(`<h3>${feature.properties.place}</h3><hr><p>${new Date(feature.properties.time)}</p><p>Magnitude:${feature.properties.mag}</p><p>Depth:${feature.geometry.coordinates[2]}</p>`);
     }
 
     // create GeoJSON layer
@@ -63,12 +63,12 @@ function TotalFunction(info) {
     // LEGEND COMPONENTS
     legend.onAdd = function(myMap) {
         var div = L.DomUtil.create("div", "legend");
-        div.innerHTML += '<i style="background: green"></i><span>>10</span><br>';
-        div.innerHTML += '<i style="background: yellow"></i><span>10-30</span><br>';
-        div.innerHTML += '<i style="background: #FFCC00"></i><span>30-50</span><br>';
-        div.innerHTML += '<i style="background: #FF9900"></i><span>50-70</span><br>';
-        div.innerHTML += '<i style="background: #FF6600"></i><span>70-90</span><br>';
-        div.innerHTML += '<i style="background: red"></i><span>90+</span><br>';
+        div.innerHTML += '<i style="background: green"></i><span>>0</span><br>';
+        div.innerHTML += '<i style="background: yellow"></i><span>0-10</span><br>';
+        div.innerHTML += '<i style="background: #FFCC00"></i><span>10-20</span><br>';
+        div.innerHTML += '<i style="background: #FF9900"></i><span>20-30</span><br>';
+        div.innerHTML += '<i style="background: #FF6600"></i><span>30-40</span><br>';
+        div.innerHTML += '<i style="background: red"></i><span>40+</span><br>';
         return div;
         };
 
