@@ -77,8 +77,7 @@ function TotalFunction(info) {
 
 var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
-// read in the earthquake data
+// read in data
 d3.json(url, function(response) {
-    // call the displayMap function, passing the data set
-    TotalFunction(response.features);
+TotalFunction(response.features);
 });
